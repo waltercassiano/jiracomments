@@ -11,6 +11,8 @@
     <link rel="icon" href="http://getbootstrap.com/favicon.ico">
 
     <title>Jira Comment</title>
+	
+	
     
     <link href="http://getbootstrap.com/assets/css/docs.min.css" rel="stylesheet">
 
@@ -37,6 +39,7 @@
     <script src="jquery-1.12.0.js"></script>
     <link href="custom.css" rel="stylesheet">
     <script src="custom.js"></script>
+	<script src="clipboard.min.js"></script>
     
   </head>
 
@@ -56,73 +59,81 @@
       <form id="comment" method="post">
 
         <!-- Code -->
+		<div id="errors">
+		<div id="cmsError">Preencha as mudanças de CMS</div>
+		<div id="codeError">Preencha as mudanças de Código</div>
+		</div>
+		
         <h1 id="overview" class="page-header">Code</h1>
         <div class="row">
           <div class="col-lg-12">		
             <div class="bs-callout bs-callout-info">               
               <div class="form-group">
-                <label for="code_changes">We have code changes?</label>
+                <label for="code_changes">Do we have code changes?</label>
               </div>
               <div class="radio">
                 <label>
-                  <input type="radio" name="code_changes" value="Yes">
+                  <input id="codeChangeY" type="radio" name="code_changes" value="Yes" onclick=showCodeChange()>
                   Yes
                 </label>
               </div>
               <div class="radio">
                 <label>
-                  <input type="radio" name="code_changes" value="No">
+                  <input id="codeChangeN" type="radio" name="code_changes" value="No" onclick=showCodeChange()>
                   No
                 </label>
               </div>              
             </div>
           </div>
         </div>
-        
-        <div class="row">
-          <div class="col-lg-12">		
-            <div class="bs-callout bs-callout-info">                
-              <div class="form-group">
-                <label for="branches">Changes Type:</label>
-              </div>              
-              <div class="radio">
-                <label>
-                  <input type="checkbox" name="code_changes_type[]" value="Drupal">
-                  Drupal
-                </label>
-              </div>
-              <div class="radio">
-                <label>
-                  <input type="checkbox" name="code_changes_type[]" value="Java">
-                  Java
-                </label>
-              </div> 
-              <div class="radio">
-                <label>
-                  <input type="checkbox" name="code_changes_type[]" value="Htaccess">
-                  Htaccess
-                </label>
-              </div> 
-              <div class="radio">
-                <label>
-                  <input type="checkbox" name="code_changes_type[]" value="Oracle Database">
-                  Oracle
-                </label>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="row">
-          <div class="col-lg-12">		
-            <div class="bs-callout bs-callout-info">                
-              <div class="form-group">
-                <label for="code_more_details">More details:</label>
-                <textarea name="code_more_details" id="code_more_details" class="form-control" rows="3"></textarea>
-              </div>              
-            </div>
-          </div>
-        </div>
+		
+        <div id="codeChange">
+			<div class="row">
+			  <div class="col-lg-12">		
+				<div class="bs-callout bs-callout-info">                
+				  <div class="form-group">
+					<label for="branches">Technology:</label>
+				  </div>              
+				  <div class="radio">
+					<label>
+					  <input type="checkbox" name="code_changes_type[]" value="Drupal">
+					  Drupal
+					</label>
+				  </div>
+				  <div class="radio">
+					<label>
+					  <input type="checkbox" name="code_changes_type[]" value="Java">
+					  Java
+					</label>
+				  </div> 
+				  <div class="radio">
+					<label>
+					  <input type="checkbox" name="code_changes_type[]" value="Htaccess">
+					  Htaccess
+					</label>
+				  </div> 
+				  <div class="radio">
+					<label>
+					  <input type="checkbox" name="code_changes_type[]" value="Oracle Database">
+					  Oracle
+					</label>
+				  </div>
+				</div>
+			  </div>
+			</div>
+			
+			
+			<div class="row">
+			  <div class="col-lg-12">		
+				<div class="bs-callout bs-callout-info">                
+				  <div class="form-group">
+					<label for="code_more_details">More details:</label>
+					<textarea name="code_more_details" id="code_more_details" class="form-control" rows="3"></textarea>
+				  </div>              
+				</div>
+			  </div>
+			</div>
+		</div>
         <!-- Code -->
         
         <!-- CMS -->
@@ -131,17 +142,17 @@
           <div class="col-lg-12">		
             <div class="bs-callout bs-callout-danger">               
               <div class="form-group">
-                <label for="cms_changes">We have CMS changes?</label>
+                <label for="cms_changes">Do we have CMS changes?</label>
               </div>
               <div class="radio">
                 <label>
-                  <input type="radio" name="cms_changes" id="cms_changes_yes" value="Yes">
+                  <input type="radio" name="cms_changes" id="cms_changes_yes" value="Yes" onclick=showCMSChange()>
                   Yes
                 </label>
               </div>
               <div class="radio">
                 <label>
-                  <input type="radio" name="cms_changes" id="cms_changes_no" value="No">
+                  <input type="radio" name="cms_changes" id="cms_changes_no" value="No" onclick=showCMSChange()>
                   No
                 </label>
               </div>              
@@ -149,91 +160,87 @@
           </div>
         </div>
         
-        <h3 id="overview" class="page-header">Steps</h1>
-        <div class="row">
-          <div class="col-lg-12">		
-            <div class="bs-callout bs-callout-danger">  
-              <h4>Step 1</h4>
-              <div class="form-group">
-                <label for="cms_changes_steps_title">Title</label>
-                <input name="cms_changes_steps_title[]" class="form-control" />   
-              </div>
-              <div class="form-group">
-                <label for="cms_changes_steps_description">Description</label>
-                <textarea name="cms_changes_steps_description[]" class="form-control" rows="3"></textarea>      
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-12">		
-            <div class="bs-callout bs-callout-danger">  
-              <h4>Step 2</h4>
-              <div class="form-group">
-                <label for="cms_changes_steps_title">Title</label>
-                <input name="cms_changes_steps_title[]" class="form-control" />   
-              </div>
-              <div class="form-group">
-                <label for="cms_changes_steps_description">Description</label>
-                <textarea name="cms_changes_steps_description[]" class="form-control" rows="3"></textarea>      
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- CMS -->   
-        
-        <!-- Comments --> 
-        <h1 id="overview" class="page-header">Comments:</h1>
-        <div class="row">
-          <div class="col-lg-12">		
-            <div class="bs-callout bs-callout-default">                
-              <div class="form-group">
-                <label for="comments">Describe more details:</label>
-                <textarea name="comments" id="comments" class="form-control" rows="3"></textarea>
-              </div>              
-            </div>
-          </div>
-        </div>
+		<div id="cmsSteps">
+			<h3 id="overview" class="page-header">Steps</h1>
+			<div class="row">
+			  <div class="col-lg-12">		
+				<div class="bs-callout bs-callout-danger">  
+				  <h4>Step 1</h4>
+				  <div class="form-group">
+					<label for="cms_changes_steps_title">Title</label>
+					<input name="cms_changes_steps_title[]" class="form-control" />   
+				  </div>
+				  <div class="form-group">
+					<label for="cms_changes_steps_description">Description</label>
+					<textarea name="cms_changes_steps_description[]" class="form-control" rows="3"></textarea>      
+				  </div>
+				</div>
+			  </div>
+			</div>
+			<div class="row">
+			  <div class="col-lg-12">		
+				<div class="bs-callout bs-callout-danger">  
+				  <h4>Step 2</h4>
+				  <div class="form-group">
+					<label for="cms_changes_steps_title">Title</label>
+					<input name="cms_changes_steps_title[]" class="form-control" />   
+				  </div>
+				  <div class="form-group">
+					<label for="cms_changes_steps_description">Description</label>
+					<textarea name="cms_changes_steps_description[]" class="form-control" rows="3"></textarea>      
+				  </div>
+				</div>
+			  </div>
+			</div>
+			<!-- CMS -->   
+			
+			<!-- Comments --> 
+			<h1 id="overview" class="page-header">Comments:</h1>
+			<div class="row">
+			  <div class="col-lg-12">		
+				<div class="bs-callout bs-callout-default">                
+				  <div class="form-group">
+					<label for="comments">Describe in more details:</label>
+					<textarea name="comments" id="comments" class="form-control" rows="3"></textarea>
+				  </div>              
+				</div>
+			  </div>
+			</div>
+		</div>
         <!-- Comments --> 
         
         <!-- Unit tests -->
         <h1 id="overview" class="page-header">Unit tests</h1>
         
-        <h3 id="overview" class="page-header">Steps</h1>
-        <div class="row">
+        <div class="row unitTestForm" id="unitTestForm">
           <div class="col-lg-12">		
             <div class="bs-callout bs-callout-warning">  
-              <h4>Step 1</h4>
+              <h4>Test 1</h4>
               <div class="form-group">
-                <label for="unit_tests_steps_title">Title</label>
+                <label for="unit_tests_steps_title">Title </label>
                 <input name="unit_tests_steps_title[]" class="form-control" />   
               </div>
               <div class="form-group">
-                <label for="unit_tests_steps_description">Description</label>
+                <label for="unit_tests_steps_steps">Steps</label>
+                <textarea name="unit_tests_steps_steps[]" class="form-control" rows="3"></textarea>      
+              </div>
+			  <div class="form-group">
+                <label for="unit_tests_steps_description">Expected Results</label>
                 <textarea name="unit_tests_steps_description[]" class="form-control" rows="3"></textarea>      
               </div>
             </div>
           </div>
+			<div>
+				<button class="btn btn-lg clone" onclick="addTest()">Clone</button> 
+				<button class="btn btn-lg remove" onclick="remove()">Remove</button>
+			</div>
         </div>
-        <div class="row">
-          <div class="col-lg-12">		
-            <div class="bs-callout bs-callout-warning">  
-              <h4>Step 2</h4>
-              <div class="form-group">
-                <label for="unit_tests_steps_title">Title</label>
-                <input name="unit_tests_steps_title[]" class="form-control" />   
-              </div>
-              <div class="form-group">
-                <label for="unit_tests_steps_description">Description</label>
-                <textarea name="unit_tests_steps_description[]" class="form-control" rows="3"></textarea>      
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Unit tests -->
-        
-        <button type="submit" class="btn btn-success btn-lg">Gerar HTML</button>
-        
+		<div id="moreTests">
+		</div>
+		
+        <!-- Unit tests -->         
+        <button id="gerarHtml" data-clipboard-action="copy" data-clipboard-target="#result" 
+				class="btn btn-success btn-lg" onclick="showResult()">Gerar HTML</button>
       </form>
       
       <!-- Result -->
