@@ -1,6 +1,6 @@
 $(document).ready(function() {
   var idForm = "#comment";
-
+	$("#result").hide();
 	
   $(idForm).submit(function( event ) {
     event.preventDefault();
@@ -83,6 +83,7 @@ $(document).ready(function() {
     
     // ====== Result
     $("#result").val(html);
+	
 	    
   });
 });
@@ -130,7 +131,7 @@ function validateForm(){
 		$("#codeError").hide();
 	}
 	
-	return validation;
+return validation;
 
 }
 
@@ -146,15 +147,57 @@ function showResult(){
 	}
 }
 
-var cloneCount =1;
-function addTest(){
 	
-	$("#unitTestForm").clone().appendTo( "#moreTests" ).attr('id', 'unitTestForm'+ cloneCount++).find("textarea").val("");
+var numForms = 1;
+function addTest(){
+
+var id ='unitTestForm'+numForms;
+var title = 'Test '+numForms;
+
+	var newTest =unitTestTpl(id, title);
+	$(newTest).appendTo('#moreTests');
+	numForms++;
+	
+/*$(document).ready(function() {
+	
+	$('button.remove').on('click',function(e){
+		$(this).parent().parent().remove();
+	});
+});
+}*/
 }
-function remove(){
 
-    $(this).parent().remove();
+
+function removeTest(idR){
+
+	$('#'+idR+'').remove();
 }
 
+function unitTestTpl(idTpl,titleTpl){
+	
+var tpl=   
+'<div class="row" id="'+idTpl+'">'+
+	'<div class="col-lg-12">'+
+		'<div class="bs-callout bs-callout-warning">'+
+			'<h4>'+titleTpl+'</h4>'+
+				'<div class="form-group">'+
+					'<label for="unit_tests_steps_title">Title </label>'+
+					'<input name="unit_tests_steps_title[]" class="form-control" /> '+
+				'</div>'+
+				'<div class="form-group">'+
+					'<label for="unit_tests_steps_steps">Steps</label>'+
+					'<textarea name="unit_tests_steps_steps[]" class="form-control" rows="3"></textarea>' +
+				'</div>'+
+				'<div class="form-group">'+
+					'<label for="unit_tests_steps_description">Expected Results</label>'+
+					'<textarea name="unit_tests_steps_description[]" class="form-control" rows="3"></textarea>'+
+				'</div>'+
+				'<div>'+
+					'<button class="btn btn-lg btn-warning" onclick="removeTest(\''+idTpl+'\')">- Test</button>'+
+				'</div>'+
+		'</div>'+
+	'</div>'+
+'</div>';
 
-
+	return tpl;
+}

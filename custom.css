@@ -25,6 +25,14 @@ textarea {
    font-size: large;
    display: none
 }
+#refreshPage { 
+	margin-left:20px;
+}
+
+#formActions { 
+	margin-top:30px;
+}
+
 
 
 
