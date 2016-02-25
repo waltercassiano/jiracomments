@@ -35,7 +35,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <link href="custom.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <!-- Custom -->
     <script src="jquery-1.12.0.js"></script>
     <!-- Latest compiled and minified JavaScript -->
@@ -66,8 +66,8 @@
 
         <!-- Code -->
 		<div id="errors">
-		<div id="cmsError">Preencha as mudanças de CMS</div>
-		<div id="codeError">Preencha as mudanças de Código</div>
+		<div id="cmsError" class="error">Preencha as mudanças de CMS</div>
+		<div id="codeError" class="error">Preencha as mudanças de Código</div>
 		</div>
 
         <h1 id="overview" class="page-header">Code</h1>
@@ -168,8 +168,8 @@
 
 		<div id="cmsSteps" class="section1">
 		<h3 id="overview" class="page-header">Steps</h1>
-			
-			
+
+
 			<!-- CMS -->
 
 			<!-- Comments -->
@@ -235,11 +235,11 @@
 	        <h4 class="modal-title" id="myModalLabel">Alert</h4>
 	      </div>
 	      <div class="modal-body">
-	        Would you like to remove this step? 
+	        Would you like to remove this step?
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-	        <button type="button" class="btn btn-primary modal-confirm-remove" >Yes</button>
+	        <button type="button" class="btn btn-default btn-warning" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+	        <button type="button" class="btn btn-primary btn-warning modal-confirm-remove" ><span class="glyphicon glyphicon-ok"></span></button>
 	      </div>
 	    </div>
 	  </div>
