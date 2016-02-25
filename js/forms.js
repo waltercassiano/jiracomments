@@ -21,7 +21,7 @@ $(function(){
 
   //To new Steps CMS
   $('.section1').on('click','.add-cms', function() {
-    $(this).closest('.form-step').after(unitTestTpl);
+    $(this).closest('.form-step').after(cmsTpl);
     $(document).trigger(cmsOptions);
   });
 
