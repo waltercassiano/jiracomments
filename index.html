@@ -11,9 +11,9 @@
     <link rel="icon" href="http://getbootstrap.com/favicon.ico">
 
     <title>Jira Comment</title>
-	
-	
-    
+
+
+
     <link href="http://getbootstrap.com/assets/css/docs.min.css" rel="stylesheet">
 
     <!-- Bootstrap core CSS -->
@@ -34,19 +34,25 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    
+
+    <link href="custom.css" rel="stylesheet">
     <!-- Custom -->
     <script src="jquery-1.12.0.js"></script>
-    <link href="custom.css" rel="stylesheet">
+    <!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="custom.js"></script>
+    <script src="js/label-element.js"></script>
+    <script src="js/forms.js">
+
+    </script>
 	<script src="clipboard.min.js"></script>
-    
+
   </head>
 
   <body>
 
     <div class="container">
-	
+
       <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills pull-right">
@@ -55,7 +61,7 @@
         </nav>
         <h3 class="text-muted">Jira Comment</h3>
       </div>
-      
+
       <form id="comment" method="post">
 
         <!-- Code -->
@@ -63,11 +69,11 @@
 		<div id="cmsError">Preencha as mudanças de CMS</div>
 		<div id="codeError">Preencha as mudanças de Código</div>
 		</div>
-		
+
         <h1 id="overview" class="page-header">Code</h1>
         <div class="row">
-          <div class="col-lg-12">		
-            <div class="bs-callout bs-callout-info">               
+          <div class="col-lg-12">
+            <div class="bs-callout bs-callout-info">
               <div class="form-group">
                 <label for="code_changes">Do we have code changes?</label>
               </div>
@@ -82,18 +88,18 @@
                   <input id="codeChangeN" type="radio" name="code_changes" value="No" onclick=showCodeChange()>
                   No
                 </label>
-              </div>              
+              </div>
             </div>
           </div>
         </div>
-		
+
         <div id="codeChange">
 			<div class="row">
-			  <div class="col-lg-12">		
-				<div class="bs-callout bs-callout-info">                
+			  <div class="col-lg-12">
+				<div class="bs-callout bs-callout-info">
 				  <div class="form-group">
 					<label for="branches">Technology:</label>
-				  </div>              
+				  </div>
 				  <div class="radio">
 					<label>
 					  <input type="checkbox" name="code_changes_type[]" value="Drupal">
@@ -105,13 +111,13 @@
 					  <input type="checkbox" name="code_changes_type[]" value="Java">
 					  Java
 					</label>
-				  </div> 
+				  </div>
 				  <div class="radio">
 					<label>
 					  <input type="checkbox" name="code_changes_type[]" value="Htaccess">
 					  Htaccess
 					</label>
-				  </div> 
+				  </div>
 				  <div class="radio">
 					<label>
 					  <input type="checkbox" name="code_changes_type[]" value="Oracle Database">
@@ -121,26 +127,26 @@
 				</div>
 			  </div>
 			</div>
-			
-			
+
+
 			<div class="row">
-			  <div class="col-lg-12">		
-				<div class="bs-callout bs-callout-info">                
+			  <div class="col-lg-12">
+				<div class="bs-callout bs-callout-info">
 				  <div class="form-group">
 					<label for="code_more_details">More details:</label>
 					<textarea name="code_more_details" id="code_more_details" class="form-control" rows="3"></textarea>
-				  </div>              
+				  </div>
 				</div>
 			  </div>
 			</div>
 		</div>
         <!-- Code -->
-        
+
         <!-- CMS -->
         <h1 id="overview" class="page-header">CMS</h1>
         <div class="row">
-          <div class="col-lg-12">		
-            <div class="bs-callout bs-callout-danger">               
+          <div class="col-lg-12">
+            <div class="bs-callout bs-callout-danger">
               <div class="form-group">
                 <label for="cms_changes">Do we have CMS changes?</label>
               </div>
@@ -155,93 +161,63 @@
                   <input type="radio" name="cms_changes" id="cms_changes_no" value="No" onclick=showCMSChange()>
                   No
                 </label>
-              </div>              
+              </div>
             </div>
           </div>
         </div>
-        
-		<div id="cmsSteps">
-			<h3 id="overview" class="page-header">Steps</h1>
-			<div class="row">
-			  <div class="col-lg-12">		
-				<div class="bs-callout bs-callout-danger">  
-				  <h4>Step 1</h4>
-				  <div class="form-group">
-					<label for="cms_changes_steps_title">Title</label>
-					<input name="cms_changes_steps_title[]" class="form-control" />   
-				  </div>
-				  <div class="form-group">
-					<label for="cms_changes_steps_description">Description</label>
-					<textarea name="cms_changes_steps_description[]" class="form-control" rows="3"></textarea>      
-				  </div>
-				</div>
-			  </div>
-			</div>
-			<div class="row">
-			  <div class="col-lg-12">		
-				<div class="bs-callout bs-callout-danger">  
-				  <h4>Step 2</h4>
-				  <div class="form-group">
-					<label for="cms_changes_steps_title">Title</label>
-					<input name="cms_changes_steps_title[]" class="form-control" />   
-				  </div>
-				  <div class="form-group">
-					<label for="cms_changes_steps_description">Description</label>
-					<textarea name="cms_changes_steps_description[]" class="form-control" rows="3"></textarea>      
-				  </div>
-				</div>
-			  </div>
-			</div>
-			<!-- CMS -->   
+
+		<div id="cmsSteps" class="section1">
+		<h3 id="overview" class="page-header">Steps</h1>
 			
-			<!-- Comments --> 
+			
+			<!-- CMS -->
+
+			<!-- Comments -->
 			<h1 id="overview" class="page-header">Comments:</h1>
 			<div class="row">
-			  <div class="col-lg-12">		
-				<div class="bs-callout bs-callout-default">                
+			  <div class="col-lg-12">
+				<div class="bs-callout bs-callout-default">
 				  <div class="form-group">
 					<label for="comments">Describe in more details:</label>
 					<textarea name="comments" id="comments" class="form-control" rows="3"></textarea>
-				  </div>              
+				  </div>
 				</div>
 			  </div>
 			</div>
 		</div>
-        <!-- Comments --> 
-        
+        <!-- Comments -->
+
         <!-- Unit tests -->
         <h1 id="overview" class="page-header">Unit tests</h1>
-        
-		<button class="btn btn-lg btn-info clone" onclick="addTest()">+ Test</button> 
-		
-		<div id="moreTests">
+
+		<div id="moreTests" class="section2">
 		</div>
-		
-        <!-- Unit tests -->   
+
+        <!-- Unit tests -->
 		<div id="formActions">
-			<button id="gerarHtml" data-clipboard-action="copy" data-clipboard-target="#result" 
+			<button id="gerarHtml" data-clipboard-action="copy" data-clipboard-target="#result"
 					class="btn btn-success btn-lg" onclick="showResult()">Generate HTML</button>
-				
-			<button id="refreshPage" data-clipboard-action="copy" 
+
+			<button id="refreshPage" data-clipboard-action="copy"
 					class="btn btn-danger btn-lg" onclick=location.reload();>Refresh Form</button>
 		</div>
       </form>
-	  
-	  
-      
+
+
+
       <!-- Result -->
       <h1 id="overview" class="page-header">Result</h1>
       <div class="row">
-        <div class="col-lg-12">		
-          <div class="bs-callout bs-callout-default">                
+        <div class="col-lg-12">
+          <div class="bs-callout bs-callout-default">
             <div class="form-group">
               <textarea name="result" id="result" class="form-control" rows="20"></textarea>
-            </div>              
+            </div>
           </div>
         </div>
       </div>
       <!-- Result -->
-    
+
 	  <!--
       <footer class="footer">
         <p>&copy; 2015 Company, Inc.</p>
@@ -250,6 +226,24 @@
 
     </div> <!-- /container -->
 
+    <!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">Alert</h4>
+	      </div>
+	      <div class="modal-body">
+	        Would you like to remove this step? 
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+	        <button type="button" class="btn btn-primary modal-confirm-remove" >Yes</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
