@@ -45,7 +45,7 @@ $(function(){
 });
 
 
-var unitTestTpl =  function() { 
+var unitTestTpl =  function() {
   var randomId = "step-test-id-" + Math.floor((Math.random() * 10000) + 1);
 
   return '<div class="row form-step" id=' + randomId + '>'+
@@ -64,9 +64,11 @@ var unitTestTpl =  function() {
   					'<label for="unit_tests_steps_description">Expected Results</label>'+
   					'<textarea name="unit_tests_steps_description[]" class="form-control" rows="3"></textarea>'+
   				'</div>'+
-  				'<div>'+
-            '<button class="btn btn-lg btn-warning add-test"> + </button>'+
-  					'<button class="btn btn-lg btn-warning remove-test" data-remove-type="test" data-step-modal="'+ randomId +'" data-toggle="modal" data-target="#myModal"> - </button>'+
+  				'<div class="row">'+
+            '<div class="col-xs-12 button-control-step" >'+
+              '<button class="btn btn-primary btn-warning add-test"><span class="glyphicon glyphicon-plus"></span></button> '+
+  					  '<button class="btn btn-primary btn-warning remove-test" data-remove-type="test" data-step-modal="'+ randomId +'" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-minus"></span></button>'+
+            '</div>'+
   				'</div>'+
   		'</div>'+
   	'</div>'+
@@ -87,9 +89,11 @@ var cmsTpl = function() {
       '<label for="cms_changes_steps_description">Description</label>'+
       '<textarea name="cms_changes_steps_description[]" class="form-control" rows="3"></textarea>'+
       '</div>'+
-      '<div>'+
-            '<button class="btn btn-lg btn-warning add-cms"> + </button>'+
-            '<button class="btn btn-lg btn-warning remove-cms" data-remove-type="cms" data-step-modal="'+ randomId +'" data-toggle="modal" data-target="#myModal"> - </button>'+
+      '<div class="row">'+
+         '<div class="col-xs-12 button-control-step" >'+
+            '<button class="btn btn-primary btn-warning add-cms"><span class="glyphicon glyphicon-plus"></span></button> '+
+            '<button class="btn btn-primary btn-warning remove-cms" data-remove-type="cms" data-step-modal="'+ randomId +'" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-minus"></span></button>'+
+          '</div>'+
       '</div>'+
     '</div>'+
     '</div>'+
