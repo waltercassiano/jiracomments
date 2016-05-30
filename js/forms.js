@@ -1,13 +1,13 @@
 $(function(){
 
   var cmsOptions = {
-    type:'added-cms',
+    type:'changed-cms',
     wrapper : '.section1',
     title : 'CMS'
   };
 
   var testOptions = {
-    type:'added-test',
+    type:'changed-test',
     wrapper : '.section2',
     title : 'Test'
   }
@@ -31,7 +31,23 @@ $(function(){
     $(document).trigger(testOptions);
   });
 
-  $(document).on('show.bs.modal', function(modal) {
+  //To Clone Steps CMS
+  $('.section1, .section2').on('click', '.clone-cms, .clone-test', function() {
+     var $clickedElemnt = $(this);
+     var $parent = $clickedElemnt.closest('.form-step');
+     var $cloneStep = $clickedElemnt.closest('.form-step').clone();
+     var clonedId = $cloneStep.attr('id') + '_clone_' + getRandom();
+     //Changing de the of clone
+     $cloneStep.attr('id', clonedId);
+     var button = $cloneStep.find('.remove-test, .remove-cms').data('step-modal', clonedId);
+     $parent.after($cloneStep);
+     switch($clickedElemnt.data('clone-type')) {
+        case 'cms' : $(document).trigger(cmsOptions); break;
+        case 'test' : $(document).trigger(testOptions); break;
+     }
+  });
+
+   $(document).on('show.bs.modal', function(modal) {
     var stepToConfirm = $(modal.relatedTarget).data('step-modal');
     $(document).on('click','.modal-confirm-remove', function(){
       $("#" + stepToConfirm).remove();
@@ -46,7 +62,7 @@ $(function(){
 
 
 var unitTestTpl =  function() {
-  var randomId = "step-test-id-" + Math.floor((Math.random() * 10000) + 1);
+  var randomId = "step-test-id-" + getRandom();
 
   return '<div class="row form-step" id=' + randomId + '>'+
   	'<div class="col-lg-12">'+
@@ -67,6 +83,7 @@ var unitTestTpl =  function() {
   				'<div class="row">'+
             '<div class="col-xs-12 button-control-step" >'+
               '<button class="btn btn-primary btn-warning add-test"><span class="glyphicon glyphicon-plus"></span></button> '+
+              '<button class="btn btn-primary btn-warning clone-test" data-clone-type="test"><span class="">Clone</span></button> '+
   					  '<button class="btn btn-primary btn-warning remove-test" data-remove-type="test" data-step-modal="'+ randomId +'" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-minus"></span></button>'+
             '</div>'+
   				'</div>'+
@@ -76,7 +93,7 @@ var unitTestTpl =  function() {
 }
 
 var cmsTpl = function() {
-  var randomId = "step-cms-id-" + Math.floor((Math.random() * 10000) + 1);
+  var randomId = "step-cms-id-" + getRandom();
   return '<div class="row form-step" id='+ randomId +'>'+
     '<div class="col-lg-12">'+
     '<div class="bs-callout bs-callout-danger">'+
@@ -92,10 +109,15 @@ var cmsTpl = function() {
       '<div class="row">'+
          '<div class="col-xs-12 button-control-step" >'+
             '<button class="btn btn-primary btn-warning add-cms"><span class="glyphicon glyphicon-plus"></span></button> '+
+            '<button class="btn btn-primary btn-warning clone-cms" data-clone-type="cms"><span class="">Clone</span></button> '+
             '<button class="btn btn-primary btn-warning remove-cms" data-remove-type="cms" data-step-modal="'+ randomId +'" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-minus"></span></button>'+
           '</div>'+
       '</div>'+
     '</div>'+
     '</div>'+
   '</div>';
+}
+
+var getRandom = function() {
+  return Math.floor((Math.random() * 10000) + 1);
 }
