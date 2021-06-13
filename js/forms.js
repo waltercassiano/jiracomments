@@ -1,5 +1,4 @@
-$(function(){
-
+$(function() {
   var cmsOptions = {
     type:'changed-cms',
     wrapper : '.section1',
@@ -58,8 +57,24 @@ $(function(){
       $("#myModal").modal('hide');
     })
   });
-});
 
+  // Button remove
+  $('.section1').on('click', '.remove-cms', function() {
+    let numberSteps1 = $('.section1 .form-step').length;
+
+    if(numberSteps1 != 1) {
+      $clickedBtnID = $(this).closest('.form-step').remove();
+    }
+  });
+
+  $('.section2').on('click', '.remove-test', function() {
+    let numberSteps2 = $('.section2 .form-step').length;
+
+    if(numberSteps2 != 1) {
+      $clickedBtnID = $(this).closest('.form-step').remove();
+    }
+  });
+});
 
 var unitTestTpl =  function() {
   var randomId = "step-test-id-" + getRandom();
@@ -81,10 +96,10 @@ var unitTestTpl =  function() {
   					'<textarea name="unit_tests_steps_description[]" class="form-control" rows="3"></textarea>'+
   				'</div>'+
   				'<div class="row">'+
-            '<div class="col-xs-12 button-control-step" >'+
-              '<button class="btn btn-primary btn-warning add-test"><span class="glyphicon glyphicon-plus"></span></button> '+
-              '<button class="btn btn-primary btn-warning clone-test" data-clone-type="test"><span class="">Clone</span></button> '+
-  					  '<button class="btn btn-primary btn-warning remove-test" data-remove-type="test" data-step-modal="'+ randomId +'" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-minus"></span></button>'+
+            '<div class="col-12 my-3 button-control-step" >'+
+              '<button class="btn btn-primary add-test"><i class="fas fa-plus"></i></button> '+
+              '<button class="btn btn-warning clone-test mx-1" data-clone-type="test"><i class="fas fa-clone"></i></button> '+
+  					  '<button class="btn btn-danger remove-test" data-remove-type="test" data-step-modal="'+ randomId +'" data-toggle="modal" data-target="#myModal"><i class="fas fa-minus"></i></button>'+
             '</div>'+
   				'</div>'+
   		'</div>'+
@@ -107,10 +122,10 @@ var cmsTpl = function() {
       '<textarea name="cms_changes_steps_description[]" class="form-control" rows="3"></textarea>'+
       '</div>'+
       '<div class="row">'+
-         '<div class="col-xs-12 button-control-step" >'+
-            '<button class="btn btn-primary btn-warning add-cms"><span class="glyphicon glyphicon-plus"></span></button> '+
-            '<button class="btn btn-primary btn-warning clone-cms" data-clone-type="cms"><span class="">Clone</span></button> '+
-            '<button class="btn btn-primary btn-warning remove-cms" data-remove-type="cms" data-step-modal="'+ randomId +'" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-minus"></span></button>'+
+         '<div class="col-12 my-3 button-control-step" >'+
+            '<button class="btn btn-primary add-cms"><i class="fas fa-plus"></i></button> '+
+            '<button class="btn btn-primary btn-warning clone-cms mx-1" data-clone-type="cms"><i class="fas fa-clone"></i></button> '+
+            '<button class="btn btn-danger remove-cms" data-remove-type="cms" data-step-modal="'+ randomId +'" data-toggle="modal" data-target="#myModal"><i class="fas fa-minus"></i></button>'+
           '</div>'+
       '</div>'+
     '</div>'+
@@ -120,4 +135,59 @@ var cmsTpl = function() {
 
 var getRandom = function() {
   return Math.floor((Math.random() * 10000) + 1);
+}
+
+// Button copy result
+document.getElementById("btn-copy-result").addEventListener("click", function() {
+  copyToClipboard(document.getElementById("result"));
+});
+
+function copyToClipboard(elem) {
+  // create hidden text element, if it doesn't already exist
+  var targetId = "_hiddenCopyText_";
+  var isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
+  var origSelectionStart, origSelectionEnd;
+  if (isInput) {
+      // can just use the original source element for the selection and copy
+      target = elem;
+      origSelectionStart = elem.selectionStart;
+      origSelectionEnd = elem.selectionEnd;
+  } else {
+      // must use a temporary form element for the selection and copy
+      target = document.getElementById(targetId);
+      if (!target) {
+          var target = document.createElement("textarea");
+          target.style.position = "absolute";
+          target.style.left = "-9999px";
+          target.style.top = "0";
+          target.id = targetId;
+          document.body.appendChild(target);
+      }
+      target.textContent = elem.textContent;
+  }
+  // select the content
+  var currentFocus = document.activeElement;
+  target.focus();
+  target.setSelectionRange(0, target.value.length);
+
+  // copy the selection
+  var succeed;
+  try {
+      succeed = document.execCommand("copy");
+  } catch(e) {
+      succeed = false;
+  }
+  // restore original focus
+  if (currentFocus && typeof currentFocus.focus === "function") {
+      currentFocus.focus();
+  }
+
+  if (isInput) {
+      // restore prior selection
+      elem.setSelectionRange(origSelectionStart, origSelectionEnd);
+  } else {
+      // clear temporary content
+      target.textContent = "";
+  }
+  return succeed;
 }

@@ -1,251 +1,246 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="http://getbootstrap.com/favicon.ico">
-
     <title>Jira Comment</title>
-
-
-
-    <link href="http://getbootstrap.com/assets/css/docs.min.css" rel="stylesheet">
-
-    <!-- Bootstrap core CSS -->
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="http://getbootstrap.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="http://getbootstrap.com/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="http://getbootstrap.com/assets/js/ie-emulation-modes-warning.js"></script>
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <link href="css/style.css" rel="stylesheet">
-    <!-- Custom -->
-    <script src="jquery-1.12.0.js"></script>
-    <!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <script src="custom.js"></script>
-    <script src="js/label-element.js"></script>
-    <script src="js/forms.js">
-
-    </script>
-	<script src="clipboard.min.js"></script>
-
+    <!-- Font Family -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Styles -->
+    <link href="src/assets/css/style.min.css" rel="stylesheet">
   </head>
-
   <body>
+    <div class="container-fluid ">
 
-    <div class="container">
+      <div class="row">
+        <div id="errors">
+            <div id="cmsError" class="error">
+              <div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
+                <i class="fas fa-exclamation-triangle"></i> Fill in the CMS changes
 
-      <div class="header clearfix">
-        <nav>
-          <ul class="nav nav-pills pull-right">
-            <li role="presentation" class="active"><a href="#">Home</a></li>
-          </ul>
-        </nav>
-        <h3 class="text-muted">Jira Comment</h3>
+              </div>
+            </div>
+
+            <div id="codeError" class="error">
+              <div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
+                <i class="fas fa-exclamation-triangle"></i> Fill in the code changes
+              </div>
+            </div>
+      </div>
       </div>
 
-      <form id="comment" method="post">
+      <div class="row content bg-dark">
+        <div class="col">
+          <h1 class="text-primary text-center">
+            <i class="fab fa-jira"></i>
+            Jira Comments
+          </h1>
+        </div>
+      </div>
 
-        <!-- Code -->
-		<div id="errors">
-		<div id="cmsError" class="error">Preencha as mudanças de CMS</div>
-		<div id="codeError" class="error">Preencha as mudanças de Código</div>
-		</div>
 
-        <h1 id="overview" class="page-header">Code</h1>
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="bs-callout bs-callout-info">
-              <div class="form-group">
-                <label for="code_changes">Do we have code changes?</label>
+      <div class="row">
+        <div class="col-12">
+
+        </div>
+
+        <form id="comment" method="post">
+          <div class="row">
+            <div class="col-xl-3 col-lg-6 bg-light p-3">
+              <h1 id="overview" class="page-header border-bottom border-primary border-2">Code</h1>
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="p-2">
+                    <label for="code_changes">Do we have code changes?</label>
+                    <div class="form-group">
+                      <div class="form-check form-check-inline">
+                        <input id="codeChangeY" class="form-check-input" type="radio" name="code_changes" value="Yes" onclick=showCodeChange()>
+                        <label class="form-check-label" for="code_changes">
+                          Yes
+                        </label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input id="codeChangeN" class="form-check-input" type="radio" name="code_changes" value="No" onclick=showCodeChange()>
+                        <label class="form-check-label" for="code_changes">
+                          No
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="radio">
-                <label>
-                  <input id="codeChangeY" type="radio" name="code_changes" value="Yes" onclick=showCodeChange()>
-                  Yes
-                </label>
+              <div id="codeChange">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="bs-callout bs-callout-info p-2">
+                      <div class="form-group">
+                        <label for="branches">Technology:</label>
+                      </div>
+                      <div class="form-check">
+                        <input type="checkbox" class="form-check-input" name="code_changes_type[]" value="Drupal" />
+                        <label class="form-check-label" for="code_changes_type">
+                          Drupal
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input type="checkbox" class="form-check-input" name="code_changes_type[]" value="Java">
+                        <label class="form-check-label" for="code_changes_type">
+                          Java
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input type="checkbox" class="form-check-input" name="code_changes_type[]" value="Htaccess" />
+                        <label class="form-check-label" for="code_changes_type">
+                          Htaccess
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input type="checkbox" class="form-check-input" name="code_changes_type[]" value="Oracle Database">
+                        <label class="form-check-label" for="code_changes_type">
+                          Oracle
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="bs-callout bs-callout-info">
+                      <div class="form-group">
+                        <label for="code_more_details">More details:</label>
+                        <textarea name="code_more_details" id="code_more_details" class="form-control" rows="3"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="radio">
-                <label>
-                  <input id="codeChangeN" type="radio" name="code_changes" value="No" onclick=showCodeChange()>
-                  No
-                </label>
+            </div>
+
+            <!-- Code -->
+            <!-- CMS -->
+            <div class="col-xl-3 col-lg-6 p-3 bg-secondary bg-gradient">
+              <h1 id="overview" class="page-header border-bottom border-success border-2">CMS</h1>
+              <div class="bs-callout bs-callout-danger p-2">
+                <div class="form-group">
+                  <label for="cms_changes">Do we have CMS changes?</label>
+                </div>
+                <div class="radio form-check form-check-inline">
+                  <input type="radio" class="form-check-input" name="cms_changes" id="cms_changes_yes" value="Yes" onclick=showCMSChange() />
+                  <label class="form-check-label" for="cms_changes">Yes</label>
+                </div>
+                <div class="radio form-check form-check-inline">
+                  <input type="radio" class="form-check-input" name="cms_changes" id="cms_changes_no" value="No" onclick=showCMSChange() />
+                  <label class="form-check-label" for="cms_changes">No</label>
+                </div>
+              </div>
+              <div id="cmsSteps" class="section1 p-2">
+                <h3 id="overview" class="page-header">Steps</h3>
+                <!-- CMS -->
+                <!-- Comments -->
+              </div>
+
+              <!-- Comments -->
+              <!-- Unit tests -->
+            </div>
+            <div class="col-xl-3 col-lg-6 bg-light bg-gradient p-3">
+              <h1 id="overview" class="page-header border-bottom border-warning border-2">Comments:</h1>
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="bs-callout bs-callout-default p-2">
+                    <div class="form-group">
+                      <label for="comments">Describe in more details:</label>
+                      <textarea name="comments" id="comments" class="form-control" rows="3"></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 bg-secondary bg-gradient p-3">
+              <h1 id="overview" class="page-header border-bottom border-danger border-2 ">Unit tests</h1>
+              <div id="moreTests" class="section2 p-2"></div>
+              <!-- Unit tests -->
+            </div> <!-- /.col-12 -->
+          </div>
+          <div class="action-buttons bg-dark">
+            <div class="row">
+              <div id="formActions" class="d-flex justify-content-around justify-content-sm-around col-sm-6">
+                <button data-clipboard-action="copy" data-clipboard-target="#result" class="btn btn-success" onclick="showResult()">
+                  <i class="fab fa-battle-net"></i>
+                  <span class="d-none d-sm-block">Generate HTML</span>
+                </button>
+                <button data-clipboard-action="copy" data-clipboard-target="#result"
+                  class="btn btn-light" id="btn-copy-result" onclick="showResult()">
+                    <i class="fas fa-copy"></i>
+                    <span class="d-none d-sm-block">Copy HTML</span>
+                </button>
+                <button id="refreshPage" data-clipboard-action="copy" class="btn btn-danger" onclick=location.reload();>
+                  <i class="fas fa-redo"></i>
+                  <span class="d-none d-sm-block">Refresh Form</span>
+                </button>
+              </div>
+              <div class="col-sm-6 mt-3 text-center text-sm-end">
+                <a href="https://github.com/thiagofranchin" target="_blank">
+                  <i class="fab fa-github text-white"></i>
+                </a>
               </div>
             </div>
           </div>
-        </div>
 
-        <div id="codeChange">
-			<div class="row">
-			  <div class="col-lg-12">
-				<div class="bs-callout bs-callout-info">
-				  <div class="form-group">
-					<label for="branches">Technology:</label>
-				  </div>
-				  <div class="radio">
-					<label>
-					  <input type="checkbox" name="code_changes_type[]" value="Drupal">
-					  Drupal
-					</label>
-				  </div>
-				  <div class="radio">
-					<label>
-					  <input type="checkbox" name="code_changes_type[]" value="Java">
-					  Java
-					</label>
-				  </div>
-				  <div class="radio">
-					<label>
-					  <input type="checkbox" name="code_changes_type[]" value="Htaccess">
-					  Htaccess
-					</label>
-				  </div>
-				  <div class="radio">
-					<label>
-					  <input type="checkbox" name="code_changes_type[]" value="Oracle Database">
-					  Oracle
-					</label>
-				  </div>
-				</div>
-			  </div>
-			</div>
+        </form>
+      </div>
 
-
-			<div class="row">
-			  <div class="col-lg-12">
-				<div class="bs-callout bs-callout-info">
-				  <div class="form-group">
-					<label for="code_more_details">More details:</label>
-					<textarea name="code_more_details" id="code_more_details" class="form-control" rows="3"></textarea>
-				  </div>
-				</div>
-			  </div>
-			</div>
-		</div>
-        <!-- Code -->
-
-        <!-- CMS -->
-        <h1 id="overview" class="page-header">CMS</h1>
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="bs-callout bs-callout-danger">
-              <div class="form-group">
-                <label for="cms_changes">Do we have CMS changes?</label>
-              </div>
-              <div class="radio">
-                <label>
-                  <input type="radio" name="cms_changes" id="cms_changes_yes" value="Yes" onclick=showCMSChange()>
-                  Yes
-                </label>
-              </div>
-              <div class="radio">
-                <label>
-                  <input type="radio" name="cms_changes" id="cms_changes_no" value="No" onclick=showCMSChange()>
-                  No
-                </label>
-              </div>
-            </div>
-          </div>
-        </div>
-
-		<div id="cmsSteps" class="section1">
-		<h3 id="overview" class="page-header">Steps</h1>
-
-
-			<!-- CMS -->
-
-			<!-- Comments -->
-			<h1 id="overview" class="page-header">Comments:</h1>
-			<div class="row">
-			  <div class="col-lg-12">
-				<div class="bs-callout bs-callout-default">
-				  <div class="form-group">
-					<label for="comments">Describe in more details:</label>
-					<textarea name="comments" id="comments" class="form-control" rows="3"></textarea>
-				  </div>
-				</div>
-			  </div>
-			</div>
-		</div>
-        <!-- Comments -->
-
-        <!-- Unit tests -->
-        <h1 id="overview" class="page-header">Unit tests</h1>
-
-		<div id="moreTests" class="section2">
-		</div>
-
-        <!-- Unit tests -->
-		<div id="formActions">
-			<button id="gerarHtml" data-clipboard-action="copy" data-clipboard-target="#result"
-					class="btn btn-success btn-lg" onclick="showResult()">Generate HTML</button>
-
-			<button id="refreshPage" data-clipboard-action="copy"
-					class="btn btn-danger btn-lg" onclick=location.reload();>Refresh Form</button>
-		</div>
-      </form>
-
-
+      <hr />
 
       <!-- Result -->
-      <h1 id="overview" class="page-header">Result</h1>
+      <!-- <h1 id="overview" class="page-header">Result</h1> -->
+
       <div class="row">
-        <div class="col-lg-12">
+        <div class="col-md-6">
           <div class="bs-callout bs-callout-default">
             <div class="form-group">
+
               <textarea name="result" id="result" class="form-control" rows="20"></textarea>
             </div>
           </div>
         </div>
       </div>
       <!-- Result -->
-
-	  <!--
-      <footer class="footer">
-        <p>&copy; 2015 Company, Inc.</p>
-      </footer>
-	  -->
-
-    </div> <!-- /container -->
-
+    </div>
+    <!-- /container -->
     <!-- Modal -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	  <div class="modal-dialog" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title" id="myModalLabel">Alert</h4>
-	      </div>
-	      <div class="modal-body">
-	        Would you like to remove this step?
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default btn-warning" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
-	        <button type="button" class="btn btn-primary btn-warning modal-confirm-remove" ><span class="glyphicon glyphicon-ok"></span></button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Alert</h4>
+          </div>
+          <div class="modal-body">
+            Would you like to remove this step?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default btn-warning" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+            <button type="button" class="btn btn-primary btn-warning modal-confirm-remove" ><span class="glyphicon glyphicon-ok"></span></button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="custom.js"></script>
+    <script src="js/label-element.js"></script>
+    <script src="js/forms.js"></script>
+    <script src="clipboard.min.js"></script>
   </body>
 </html>

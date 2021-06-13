@@ -1,4 +1,4 @@
-$(document).ready(function() {
+jQuery(function() {
   var idForm = "#comment";
   $("#result").hide();
 
