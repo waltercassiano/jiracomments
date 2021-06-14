@@ -1,7 +1,7 @@
-<div style="display: flex;">
-  <img src="./src/assets/images/pena.png" style="width: 64px; margin-right: 15px; height: 64px;"/>
-  <h1 style="color: #0d6efd">Jira Comments</h1>
-</div>
+
+<img src="./src/assets/images/pena-64.png" style="width: 64px; height: 64px; display: block; margin: 0 auto;"/>
+
+<h1 style="color: #0d6efd; text-align: center;">Jira Comments</h1>
 
 ### Jira comments template, created to streamline your life.
 
