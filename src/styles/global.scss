@@ -2,7 +2,6 @@
 @import "./base/typography";
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 
-
 $action-buttons: 50px;
 
 body {
@@ -10,30 +9,32 @@ body {
   background: #b4b4b4;
 
   .content {
-    padding: 15px;
+    padding: 30px 15px 15px;
   }
 }
 
-// textarea {
-//   max-width: 100%;
-//   background: #393f49;
-// }
+.logo {
+  width: 38px;
+  height: auto;
+  position: relative;
+  top: -7px;
+}
 
-// #codeChange {
-//    display: none
-// }
+.form-control {
+  background: #e5e5e5;
+}
+
+#codeChange, #cmsSteps {
+   display: none
+}
 
 .error {
   display: none
 }
 
-// .button-control-step {
-//   text-align: right;
-// }
-
 .action-buttons {
   bottom: 0;
-  margin-left: -15px;
+  margin-left: -12px;
   position: fixed;
   width: 100%;
   padding: 15px;
@@ -42,12 +43,12 @@ body {
 .fa-github {
   font-size: 35px;
   cursor: pointer;
+  margin-right: 60px;
 
   &:hover {
     color: #0d6efd !important;
   }
 }
-
 
 @media (max-width: 575.98px) {
   .fa-battle-net  {
@@ -62,5 +63,22 @@ body {
     font-size: 40px;
     padding: 10px;
   }
+}
 
+.back-to-top {
+  bottom: 25px;
+  position: fixed;
+  right: 20px;
+
+  @media (max-width: 575.98px) {
+    background-color: #212529;
+    bottom: 120px;
+    right: 10px;
+
+    &:hover {
+      background-color: #1c1f23;
+      border-color: #1a1e21;
+      color: #fff;
+    }
+  }
 }

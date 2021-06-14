@@ -111,7 +111,7 @@ function showCMSChange(){
   }
 }
 
-function validateForm(){
+function validateForm() {
 
   var validation = true;
 
@@ -120,6 +120,9 @@ function validateForm(){
     $("#cmsError").show();
     $('html, body').animate({ scrollTop: 0 }, 'fast');
     validation =  false;
+    setTimeout(() => {
+      $("#cmsError").fadeOut(1000);
+    }, 5000);
   }
   else{
     $("#cmsError").hide();
@@ -130,16 +133,18 @@ function validateForm(){
     $("#result").hide();
     $('html, body').animate({ scrollTop: 0 }, 'fast');
     validation =  false;
+    setTimeout(() => {
+      $("#codeError").fadeOut(1000);
+    }, 5000);
   }
   else{
     $("#codeError").hide();
   }
 
   return validation;
-
 }
 
-function showResult(){
+function showResult() {
   if(validateForm()){
     $("#result").show();
     $("#cmsError").hide();
@@ -148,6 +153,23 @@ function showResult(){
   }
 }
 
+// Btn Back to Top
+$('.back-to-top').hide();
+
+$(window).on('scroll',function(){
+  if($(this).scrollTop()>0) {
+    $('.back-to-top').fadeIn();
+  }
+  else {
+    $('.back-to-top').fadeOut();
+  }
+})
+
+$('.back-to-top').on('click', function(){
+  $('body, html').animate({
+    scrollTop: 0
+  })
+})
 
 // var numForms = 1;
 // function addTest(){

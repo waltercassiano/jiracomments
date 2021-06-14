@@ -2,15 +2,12 @@
   "name": "jiracomments",
   "version": "1.0.0",
   "scripts": {
-    "nodesass": "node-sass --watch src/styles/global.scss src/assets/css/style.min.css --output-style compressed",
-    "nodesass-build": "node-sass src/styles/global.scss src/assets/css/style.min.css --output-style compressed",
-    "sass": "sass --watch src/styles/global.scss:src/assets/css/style.min.css --style compressed",
-    "sass-build": "sass src/styles/global.scss:src/assets/css/style.min.css --style compressed"
+    "sass": "node-sass --watch src/styles/global.scss src/assets/css/style.min.css --output-style compressed",
+    "sass-build": "node-sass src/styles/global.scss src/assets/css/style.min.css --output-style compressed"
   },
   "license": "ISC",
   "dependencies": {
     "bootstrap": "^5.0.1",
-    "node-sass": "^6.0.0",
-    "sass": "^1.34.1"
+    "node-sass": "^6.0.0"
   }
 }

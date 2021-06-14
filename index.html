@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
-    <title>Jira Comment</title>
+    <link rel="icon" href="./src/assets/images/pena.png">
+    <title>Jira Comments</title>
     <!-- Font Family -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap" rel="stylesheet">
@@ -18,39 +18,33 @@
   </head>
   <body>
     <div class="container-fluid ">
-
       <div class="row">
-        <div id="errors">
+        <div class="col px-0">
+          <div id="errors">
             <div id="cmsError" class="error">
               <div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
                 <i class="fas fa-exclamation-triangle"></i> Fill in the CMS changes
-
               </div>
             </div>
-
             <div id="codeError" class="error">
               <div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
                 <i class="fas fa-exclamation-triangle"></i> Fill in the code changes
               </div>
             </div>
+          </div>
+        </div>
       </div>
-      </div>
-
       <div class="row content bg-dark">
         <div class="col">
-          <h1 class="text-primary text-center">
-            <i class="fab fa-jira"></i>
+          <h1 class="text-primary text-center text-sm-start">
+            <img src="./src/assets/images/pena.png"  class="logo" alt="Jira Comments logo">
             Jira Comments
           </h1>
         </div>
       </div>
-
-
       <div class="row">
         <div class="col-12">
-
         </div>
-
         <form id="comment" method="post">
           <div class="row">
             <div class="col-xl-3 col-lg-6 bg-light p-3">
@@ -67,7 +61,7 @@
                         </label>
                       </div>
                       <div class="form-check form-check-inline">
-                        <input id="codeChangeN" class="form-check-input" type="radio" name="code_changes" value="No" onclick=showCodeChange()>
+                        <input id="codeChangeN" class="form-check-input" type="radio" name="code_changes" value="No" onclick=showCodeChange() checked>
                         <label class="form-check-label" for="code_changes">
                           No
                         </label>
@@ -136,7 +130,7 @@
                   <label class="form-check-label" for="cms_changes">Yes</label>
                 </div>
                 <div class="radio form-check form-check-inline">
-                  <input type="radio" class="form-check-input" name="cms_changes" id="cms_changes_no" value="No" onclick=showCMSChange() />
+                  <input type="radio" class="form-check-input" name="cms_changes" id="cms_changes_no" value="No" onclick=showCMSChange() checked />
                   <label class="form-check-label" for="cms_changes">No</label>
                 </div>
               </div>
@@ -145,12 +139,11 @@
                 <!-- CMS -->
                 <!-- Comments -->
               </div>
-
               <!-- Comments -->
               <!-- Unit tests -->
             </div>
             <div class="col-xl-3 col-lg-6 bg-light bg-gradient p-3">
-              <h1 id="overview" class="page-header border-bottom border-warning border-2">Comments:</h1>
+              <h1 id="overview" class="page-header border-bottom border-warning border-2">Comments</h1>
               <div class="row">
                 <div class="col-lg-12">
                   <div class="bs-callout bs-callout-default p-2">
@@ -170,37 +163,33 @@
           </div>
           <div class="action-buttons bg-dark">
             <div class="row">
-              <div id="formActions" class="d-flex justify-content-around justify-content-sm-around col-sm-6">
-                <button data-clipboard-action="copy" data-clipboard-target="#result" class="btn btn-success" onclick="showResult()">
+              <div id="formActions" class="d-flex justify-content-around justify-content-sm-start col-sm-6">
+                <button class="btn btn-success me-sm-3" data-clipboard-action="copy" data-clipboard-target="#result" onclick="showResult()">
                   <i class="fab fa-battle-net"></i>
                   <span class="d-none d-sm-block">Generate HTML</span>
                 </button>
-                <button data-clipboard-action="copy" data-clipboard-target="#result"
-                  class="btn btn-light" id="btn-copy-result" onclick="showResult()">
+                <button class="btn btn-light me-sm-3" data-clipboard-action="copy" data-clipboard-target="#result"
+                  id="btn-copy-result" onclick="showResult()">
                     <i class="fas fa-copy"></i>
                     <span class="d-none d-sm-block">Copy HTML</span>
                 </button>
-                <button id="refreshPage" data-clipboard-action="copy" class="btn btn-danger" onclick=location.reload();>
+                <button class="btn btn-danger" id="refreshPage" data-clipboard-action="copy" onclick=location.reload();>
                   <i class="fas fa-redo"></i>
                   <span class="d-none d-sm-block">Refresh Form</span>
                 </button>
               </div>
-              <div class="col-sm-6 mt-3 text-center text-sm-end">
-                <a href="https://github.com/thiagofranchin" target="_blank">
+              <div class="col-sm-6 d-none d-sm-block mt-3 text-center text-sm-end">
+                <a href="https://github.com/thiagofranchin/jiracomments" target="_blank">
                   <i class="fab fa-github text-white"></i>
                 </a>
               </div>
             </div>
           </div>
-
         </form>
       </div>
-
       <hr />
-
       <!-- Result -->
       <!-- <h1 id="overview" class="page-header">Result</h1> -->
-
       <div class="row">
         <div class="col-md-6">
           <div class="bs-callout bs-callout-default">
@@ -233,14 +222,15 @@
       </div>
     </div>
 
-
+    <!-- Button Top -->
+    <button type="button" class="btn btn-secondary back-to-top"><i class="fas fa-angle-up"></i></button>
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-    <script src="custom.js"></script>
-    <script src="js/label-element.js"></script>
-    <script src="js/forms.js"></script>
-    <script src="clipboard.min.js"></script>
+    <script src="./src/assets/js/custom.js"></script>
+    <script src="./src/assets/js/label-element.js"></script>
+    <script src="./src/assets/js/forms.js"></script>
+    <script src="./src/assets/js/clipboard.min.js"></script>
   </body>
 </html>
