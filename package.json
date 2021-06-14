@@ -1,0 +1,13 @@
+{
+  "name": "jiracomments",
+  "version": "1.0.0",
+  "scripts": {
+    "sass": "node-sass --watch src/styles/global.scss src/assets/css/style.min.css --output-style compressed",
+    "sass-build": "node-sass src/styles/global.scss src/assets/css/style.min.css --output-style compressed"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.0.1",
+    "node-sass": "^6.0.0"
+  }
+}
